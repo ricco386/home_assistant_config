@@ -1,0 +1,36 @@
+- platform: bitcoin
+  currency: EUR
+  display_options:
+    - exchangerate
+- platform: cups
+  host: cups
+  printers:
+    - ipp/print
+- platform: mqtt
+  name: "Doorway TEMP"
+  state_topic: "home/doorway/temperature"
+  unit_of_measurement: "°C"
+  expire_after: 900
+- platform: mqtt
+  name: "Doorway HUM"
+  state_topic: "home/doorway/humidity"
+  unit_of_measurement: "%"
+  expire_after: 900
+- platform: mqtt
+  name: "Garage Door"
+  state_topic: "garage/door"
+  expire_after: 5
+- platform: mqtt
+  name: "Garage PIR"
+  state_topic: "garage/PIR"
+  expire_after: 5
+- platform: mqtt
+  name: "Garage TEMP"
+  state_topic: "garage/temperature"
+  unit_of_measurement: "°C"
+  expire_after: 900
+- platform: mqtt
+  name: "Garage HUM"
+  state_topic: "garage/humidity"
+  unit_of_measurement: "%"
+  expire_after: 900

@@ -1,0 +1,34 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 215
+  unit_system: metric
+  time_zone: Europe/Bratislava
+  internal_url: !secret internal_url
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+sensor: !include sensor.yaml
+notify: !include notify.yaml
+
+asuswrt:
+  host: 192.168.24.1
+  username: !secret asuswrt_username
+  protocol: ssh
+  ssh_key: /config/id_ed25519
+  sensors:
+    - devices
+    - upload
+    - download
+    - upload_speed
+    - download_speed
