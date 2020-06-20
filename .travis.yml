@@ -5,6 +5,8 @@ addons:
   apt:
     packages:
       - python-dev        # Stream
+      - cups              # Sensor cups
+      - libcups2-dev      # Sensor cups
 python:
   - "3.7"
 before_install:
