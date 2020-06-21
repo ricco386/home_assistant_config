@@ -2,10 +2,10 @@
   currency: EUR
   display_options:
     - exchangerate
-- platform: cups
-  host: cups
-  printers:
-    - ipp/print
+#- platform: cups
+#  host: cups
+#  printers:
+#    - ipp/print
 - platform: mqtt
   name: "Doorway TEMP"
   state_topic: "home/doorway/temperature"
