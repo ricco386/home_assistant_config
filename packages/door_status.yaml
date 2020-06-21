@@ -1,0 +1,8 @@
+##################################################
+## Customize
+##################################################
+binary_sensor:
+  - platform: mqtt
+    name: "Garage Door"
+    state_topic: "garage/door/status"
+    device_class: garage_door

@@ -1,0 +1,7 @@
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 215
+  unit_system: metric
+  time_zone: Europe/Bratislava
+  internal_url: !secret internal_url

@@ -13,6 +13,10 @@ pids
 __pycache__
 *.pyc
 
+# Python virtual environment
+envs3
+envs
+
 # Other
 .id_ed25519
 *.uuid

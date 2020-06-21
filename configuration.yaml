@@ -1,14 +1,10 @@
-# Configure a default setup of Home Assistant (frontend, api, etc)
-default_config:
-
+###################################################
+#     Home Assistant Main Configuration File      #
+###################################################
 homeassistant:
-  name: Home
-  latitude: !secret latitude
-  longitude: !secret longitude
-  elevation: 215
-  unit_system: metric
-  time_zone: Europe/Bratislava
-  internal_url: !secret internal_url
+  customize: !include customize.yaml
+  # https://home-assistant.io/docs/configuration/packages/
+  packages: !include_dir_named packages
 
 # Text to speech
 tts:
