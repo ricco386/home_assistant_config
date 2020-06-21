@@ -17,10 +17,6 @@
   unit_of_measurement: "%"
   expire_after: 900
 - platform: mqtt
-  name: "Garage PIR"
-  state_topic: "garage/PIR"
-  expire_after: 5
-- platform: mqtt
   name: "Garage TEMP"
   state_topic: "garage/temperature"
   unit_of_measurement: "°C"

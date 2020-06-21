@@ -2,6 +2,14 @@
 #     Home Assistant Main Configuration File      #
 ###################################################
 homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 215
+  unit_system: metric
+  time_zone: Europe/Bratislava
+  internal_url: !secret internal_url
+  # https://www.home-assistant.io/docs/configuration/customizing-devices/
   customize: !include customize.yaml
   # https://home-assistant.io/docs/configuration/packages/
   packages: !include_dir_named packages
