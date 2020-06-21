@@ -25,7 +25,7 @@ asuswrt:
   host: 192.168.24.1
   username: !secret asuswrt_username
   protocol: ssh
-  ssh_key: /config/id_ed25519
+  ssh_key: id_ed25519
   sensors:
     - devices
     - upload
