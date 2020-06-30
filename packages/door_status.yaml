@@ -1,8 +1,13 @@
 ##################################################
-## Customize
+## List of all magnetic sensors
 ##################################################
 binary_sensor:
   - platform: mqtt
     name: "Garage Door"
-    state_topic: "garage/door/status"
     device_class: garage_door
+    state_topic: "garage/door/status"
+    availability_topic: "garage/door/availability"
+    payload_available: 1
+    payload_not_available: 0
+    payload_on: 1
+    payload_off: 0
