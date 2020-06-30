@@ -3,6 +3,7 @@
 ##################################################
 binary_sensor:
   - platform: mqtt
+    unique_id: garage-door
     name: "Garage Door"
     device_class: garage_door
     state_topic: "garage/door/status"

@@ -3,6 +3,7 @@
 ##################################################
 binary_sensor:
   - platform: mqtt
+    unique_id: garage-pir-1
     name: "Garage PIR"
     device_class: motion
     state_topic: "garage/pir/1/status"
