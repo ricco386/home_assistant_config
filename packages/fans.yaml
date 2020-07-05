@@ -1,0 +1,21 @@
+fan:
+  - platform: template
+    fans:
+      livingroom_fan:
+        friendly_name: "Living Room fan"
+        value_template: "{{ states('input_boolean.state') }}"
+        speed_template: "{{ states('input_select.speed') }}"
+        turn_on:
+          service: script.living_room_fan_speed
+          data_template:
+            speed: "3"
+        turn_off:
+          service: script.living_room_fan_off
+        set_speed:
+          service: script.living_room_fan_speed
+          data_template:
+            speed: "{{ speed }}"
+        speeds:
+          - '1'
+          - '2'
+          - '3'

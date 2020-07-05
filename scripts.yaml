@@ -7,3 +7,14 @@ living_room_ceiling_light_off:
   sequence:
     - service: switch.turn_off
       entity_id: switch.living_room_light   # Broadlink IR switch
+
+living_room_fan_off:
+  sequence:
+    - service: switch.turn_off
+      entity_id: switch.living_room_fan_off  # Broadlink IR switch
+
+living_room_fan_speed:
+  sequence:
+    - service: switch.turn_on
+      data_template:
+        entity_id: switch.living_room_fan{{ speed }}  # Broadlink IR switch
