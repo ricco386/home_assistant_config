@@ -1,1 +1,10 @@
-[]
+- alias: Send an email when the garage doorbell opens or if there is movement
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.garage_door, binary_sensor.garage_pir
+    to: 'on'
+  action:
+    - service: notify.NOTIFIER_EMAIL
+      data:
+        title: 'Intruder alert'
+        message: 'Intruder alert at garage!'
