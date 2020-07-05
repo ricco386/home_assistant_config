@@ -1,0 +1,9 @@
+living_room_ceiling_light_on:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.living_room_light   # Broadlink IR switch
+
+living_room_ceiling_light_off:
+  sequence:
+    - service: switch.turn_off
+      entity_id: switch.living_room_light   # Broadlink IR switch

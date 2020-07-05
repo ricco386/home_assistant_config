@@ -1,0 +1,9 @@
+light:
+  - platform: template
+    lights:
+      livingroom_ceiling_light:  # Broadlink IR switch
+        friendly_name: "Living Room ceiling light"
+        turn_on:
+          service: script.living_room_ceiling_light_on
+        turn_off:
+          service: script.living_room_ceiling_light_off
