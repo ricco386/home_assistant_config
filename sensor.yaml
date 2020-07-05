@@ -21,3 +21,5 @@
       arg: eth0
     - type: ipv4_address
       arg: wlan0
+- platform: cert_expiry
+  host: next.qwer.sk
