@@ -1,0 +1,127 @@
+switch:
+  - platform: broadlink
+    host: !secret broadlink_ip
+    mac: !secret broadlink_mac
+    type: rm4_pro
+    timeout: 15
+    switches:
+      antik_set_top_box_power:
+        friendly_name: "Antik set top box power"
+        command_on: 'JgBCAB0dOh0dOjo6HR07HB45HR06HR4ACtUeHDsdHTo7OR0dOh0eOR4cOh0eAArVHR06HR06OzkdHTodHTodHTodHQANBQAAAAA='
+        command_off: 'JgBCAB0dOh0dOjo6HR07HB45HR06HR4ACtUeHDsdHTo7OR0dOh0eOR4cOh0eAArVHR06HR06OzkdHTodHTodHTodHQANBQAAAAA='
+      antik_set_top_box_mute:
+        friendly_name: "Antik set top box mute"
+        command_on: 'JgBCAB0dOh0dOjo6HR06HR45Hhw7Oh4ACrceHDsdHjk6Oh4cOh0eOR0dOzkdAAq5HR07HB06OjodHTodHjkdHTo6HQANBQAAAAA='
+        command_off: 'JgBCAB0dOh0dOjo6HR06HR45Hhw7Oh4ACrceHDsdHjk6Oh4cOh0eOR0dOzkdAAq5HR07HB06OjodHTodHjkdHTo6HQANBQAAAAA='
+      antik_set_top_box_1:
+        friendly_name: "Antik set top box 1"
+        command_on: 'JgAwABwdHhw7Ojo6Hhw6HR0dHR0dHR06HgAKuB0dHhw7OTo6Hhw7HB4cHR0eHB45HgANBQAAAAAAAA=='
+        command_off: 'JgAwABwdHhw7Ojo6Hhw6HR0dHR0dHR06HgAKuB0dHhw7OTo6Hhw7HB4cHR0eHB45HgANBQAAAAAAAA=='
+      antik_set_top_box_2:
+        friendly_name: "Antik set top box 2"
+        command_on: 'JgAsAB0dOh0dOjo6HR07HB0dHR0dOjsACtUdHTodHTo8OB8bOh0eHB4cHjo6AA0FAAAAAAAAAAAAAA=='
+        command_off: 'JgAsAB0dOh0dOjo6HR07HB0dHR0dOjsACtUdHTodHTo8OB8bOh0eHB4cHjo6AA0FAAAAAAAAAAAAAA=='
+      antik_set_top_box_3:
+        friendly_name: "Antik set top box 3"
+        command_on: 'JgAwAB0cHh06Ojs5HR07HB0dHR0dOh0dHQAKuR4cHR07OTs5HR06HR4cHhweOR4cHgANBQAAAAAAAA=='
+        command_off: 'JgAwAB0cHh06Ojs5HR07HB0dHR0dOh0dHQAKuR4cHR07OTs5HR06HR4cHhweOR4cHgANBQAAAAAAAA=='
+      antik_set_top_box_4:
+        friendly_name: "Antik set top box 4"
+        command_on: 'JgAsAB4cOh0eOTo6HR06HR0dHTo7HB4ACtUeHDscHTo6Oh0dOh0eHB46Oh0eAA0FAAAAAAAAAAAAAA=='
+        command_off: 'JgAsAB4cOh0eOTo6HR06HR0dHTo7HB4ACtUeHDscHTo6Oh0dOh0eHB46Oh0eAA0FAAAAAAAAAAAAAA=='
+      antik_set_top_box_5:
+        friendly_name: "Antik set top box 5"
+        command_on: 'JgAsAB0dHR06Ojo6HR06HR0dHTo7OR0ACrkdHR0dOzk6Oh0dOh0eHB45OzkeAA0FAAAAAAAAAAAAAA=='
+        command_off: 'JgAsAB0dHR06Ojo6HR06HR0dHTo7OR0ACrkdHR0dOzk6Oh0dOh0eHB45OzkeAA0FAAAAAAAAAAAAAA=='
+      antik_set_top_box_6:
+        friendly_name: "Antik set top box 6"
+        command_on: 'JgAsABwdOxweOjo6HR06HR0dHTodHToACtYdHTodHjk6Oh0dOh0dHR06HR07AA0FAAAAAAAAAAAAAA=='
+        command_off: 'JgAsABwdOxweOjo6HR06HR0dHTodHToACtYdHTodHjk6Oh0dOh0dHR06HR07AA0FAAAAAAAAAAAAAA=='
+      antik_set_top_box_7:
+        friendly_name: "Antik set top box 7"
+        command_on: 'JgAwAB0dOxwdOjs6HR06HR0dHTodHR0dHgAKtx4cOx0dOjo6HR07HB0dHTodHR0dHQANBQAAAAAAAA=='
+        command_off: 'JgAwAB0dOxwdOjs6HR06HR0dHTodHR0dHgAKtx4cOx0dOjo6HR07HB0dHTodHR0dHQANBQAAAAAAAA=='
+      antik_set_top_box_8:
+        friendly_name: "Antik set top box 8"
+        command_on: 'JgAsAB8dHR06Ojs5Hhw6HR45Oh0eHB0ACtYeHB0dOjo6Oh4cOxweOTodHR0eAA0FAAAAAAAAAAAAAA=='
+        command_off: 'JgAsAB8dHR06Ojs5Hhw6HR45Oh0eHB0ACtYeHB0dOjo6Oh4cOxweOTodHR0eAA0FAAAAAAAAAAAAAA=='
+      antik_set_top_box_9:
+        friendly_name: "Antik set top box 9"
+        command_on: 'JgAsAB0dOh0dOjs5Hhw6HR45Oh0dOh4ACrgdHTodHjk6Oh4cOh0dOjodHTodAA0FAAAAAAAAAAAAAA=='
+        command_off: 'JgAsAB0dOh0dOjs5Hhw6HR45Oh0dOh4ACrgdHTodHjk6Oh4cOh0dOjodHTodAA0FAAAAAAAAAAAAAA=='
+      antik_set_top_box_0:
+        friendly_name: "Antik set top box 0"
+        command_on: 'JgAwAB0dHR06Ojo6HR07HB0dHR0eHB4dHQAK1R0dHhw6Ojs5Hh06HR4cHhwdHR4cHgANBQAAAAAAAA=='
+        command_off: 'JgAwAB0dHR06Ojo6HR07HB0dHR0eHB4dHQAK1R0dHhw6Ojs5Hh06HR4cHhwdHR4cHgANBQAAAAAAAA=='
+      antik_set_top_box_ok:
+        friendly_name: "Antik set top box OK"
+        command_on: 'JgBCADodHhwdOjs5Hh06Ojo6HhweHB4ACrg6HR0dHTo6Oh4cOzk7OR0dHR0dAAq5OxweHB06OzkdHTs5OjoeHB4dHQANBQAAAAA='
+        command_off: 'JgBCADodHhwdOjs5Hh06Ojo6HhweHB4ACrg6HR0dHTo6Oh4cOzk7OR0dHR0dAAq5OxweHB06OzkdHTs5OjoeHB4dHQANBQAAAAA='
+      antik_set_top_box_back:
+        friendly_name: "Antik set top box back"
+        command_on: 'JgBCAB0dOxweOTo6HR0dHTscHhwdOjoACtYdHTodHTo6Oh0dHR06HR4cHjk8AArUHh07HB06OjodHR4cOh0dHR06OgANBQAAAAA='
+        command_off: 'JgBCAB0dOxweOTo6HR0dHTscHhwdOjoACtYdHTodHTo6Oh0dHR06HR4cHjk8AArUHh07HB06OjodHR4cOh0dHR06OgANBQAAAAA='
+      antik_set_top_box_exit:
+        friendly_name: "Antik set top box exit"
+        command_on: 'JgAoADo6Ojo7Oh0dOjo7HB06HR0dAAq5Ozk6Ojo6Hhw7OTodHjkeHB0ADQUAAAAAAAAAAAAAAAAAAA=='
+        command_off: 'JgAoADo6Ojo7Oh0dOjo7HB06HR0dAAq5Ozk6Ojo6Hhw7OTodHjkeHB0ADQUAAAAAAAAAAAAAAAAAAA=='
+      antik_set_top_box_epg:
+        friendly_name: "Antik set top box epg"
+        command_on: 'JgA2ADs5Ojo7OR4cOzk6OjscHgAK1js5Ozk6Oh0dOjo7OTodHQAK1jo6Ozk6Oh0dOzk6OjscHgANBQ=='
+        command_off: 'JgA2ADs5Ojo7OR4cOzk6OjscHgAK1js5Ozk6Oh0dOjo7OTodHQAK1jo6Ozk6Oh0dOzk6OjscHgANBQ=='
+      antik_set_top_box_info:
+        friendly_name: "Antik set top box info"
+        command_on: 'JgAwAB4cOh0eOTs5HR06HR06HR0dHR4cHgAKuB0dOh0eOTo6HR06HR06HR0dHR4cHgANBQAAAAAAAA=='
+        command_off: 'JgAwAB4cOh0eOTs5HR06HR06HR0dHR4cHgAKuB0dOh0eOTo6HR06HR06HR0dHR4cHgANBQAAAAAAAA=='
+      antik_set_top_box_menu:
+        friendly_name: "Antik set top box menu"
+        command_on: 'JgA2ADo6Ojo6Oh0dOjo6HR45OgAK1js5Ozk6Oh4cOzo7HB06OgAK1js5Ozk6Oh0dOzk6HR06OwANBQ=='
+        command_off: 'JgA2ADo6Ojo6Oh0dOjo6HR45OgAK1js5Ozk6Oh4cOzo7HB06OgAK1js5Ozk6Oh0dOzk6HR06OwANBQ=='
+      antik_set_top_box_up:
+        friendly_name: "Antik set top box up"
+        command_on: 'JgAsADscHR0eOTo6HR06OjscHhweHB4ACtY7HB0dHjk7OR0dOjo6HR0dHhwdAA0FAAAAAAAAAAAAAA=='
+        command_off: 'JgAsADscHR0eOTo6HR06OjscHhweHB4ACtY7HB0dHjk7OR0dOjo6HR0dHhwdAA0FAAAAAAAAAAAAAA=='
+      antik_set_top_box_down:
+        friendly_name: "Antik set top box down"
+        command_on: 'JgAoADs5Ojo7OR0dOzk7HR0dHjkdAAq4Ozk7Ojo6Hhw6OjodHR0dOh4ADQUAAAAAAAAAAAAAAAAAAA=='
+        command_off: 'JgAoADs5Ojo7OR0dOzk7HR0dHjkdAAq4Ozk7Ojo6Hhw6OjodHR0dOh4ADQUAAAAAAAAAAAAAAAAAAA=='
+      antik_set_top_box_left:
+        friendly_name: "Antik set top box left"
+        command_on: 'JgA8ADodHR0dOjo6HR06Ojo6OjoeAAq4Oh0eHB06OjodHTo6Ojo8OR0ACrg6HR0dHjk7OR4cOzo6Ojs5HQANBQAAAAAAAAAAAAA='
+        command_off: 'JgA8ADodHR0dOjo6HR06Ojo6OjoeAAq4Oh0eHB06OjodHTo6Ojo8OR0ACrg6HR0dHjk7OR4cOzo6Ojs5HQANBQAAAAAAAAAAAAA='
+      antik_set_top_box_right:
+        friendly_name: "Antik set top box right"
+        command_on: 'JgAkADs5Ojo7OR4cOzk8OR4cOgAK1jo6Ozk6Oh0dOjo6Oh4cOwANBQAA'
+        command_off: 'JgAkADs5Ojo7OR4cOzk8OR4cOgAK1jo6Ozk6Oh0dOjo6Oh4cOwANBQAA'
+      antik_set_top_box_volume_up:
+        friendly_name: "Antik set top box volume up"
+        command_on: 'JgBCAB0dOxwdOjo6Hhw6OjodHhwdHR0ACtYeHDscHjk6Oh0dOzk7HB4dHR0eAArUHhw7HB45OjoeHDw4PBweHB4cHQANBQAAAAA='
+        command_off: 'JgBCAB0dOxwdOjo6Hhw6OjodHhwdHR0ACtYeHDscHjk6Oh0dOzk7HB4dHR0eAArUHhw7HB45OjoeHDw4PBweHB4cHQANBQAAAAA='
+      antik_set_top_box_volume_down:
+        friendly_name: "Antik set top box volume down"
+        command_on: 'JgBCAB0dHR06Ojo6HR06OjodHR0dOh0ACrkdHR4cOzk6Oh4cOjo7HB4cHToeAAq4HR0dHTs5OzkeHTs5OxwdHR06HgANBQAAAAA='
+        command_off: 'JgBCAB0dHR06Ojo6HR06OjodHR0dOh0ACrkdHR4cOzk6Oh4cOjo7HB4cHToeAAq4HR0dHTs5OzkeHTs5OxwdHR06HgANBQAAAAA='
+      antik_set_top_box_channel_up:
+        friendly_name: "Antik set top box channel up"
+        command_on: 'JgAwAB0dOxwdOjs5HR0eHDodHR0eHB0dHgAK1R0dOxweOTo6HhwdHTscHhwdHR0dHQANBQAAAAAAAA=='
+        command_off: 'JgAwAB0dOxwdOjs5HR0eHDodHR0eHB0dHgAK1R0dOxweOTo6HhwdHTscHhwdHR0dHQANBQAAAAAAAA=='
+      antik_set_top_box_channel_down:
+        friendly_name: "Antik set top box channel down"
+        command_on: 'JgAwAB0dOh0dOjo6HhweHDscHhwdHR45HQAKuR4cOh0dOjs5HhwdHTodHR0eHB06HgANBQAAAAAAAA=='
+        command_off: 'JgAwAB0dOh0dOjo6HhweHDscHhwdHR45HQAKuR4cOh0dOjs5HhwdHTodHR0eHB06HgANBQAAAAAAAA=='
+      antik_set_top_box_red:
+        friendly_name: "Antik set top box red"
+        command_on: 'JgBQADo6Ojo6Oh0dHR06Ojo6HR0dAAq5Ojo6Ojo6HR0dHTs5OzodHR0ACrg6Ojo6OzkeHB4dOzk6Oh4cHgAKtzs5Ozo7OR0dHR07OTo6HR0dAA0FAAAAAAAA'
+        command_off: 'JgBQADo6Ojo6Oh0dHR06Ojo6HR0dAAq5Ojo6Ojo6HR0dHTs5OzodHR0ACrg6Ojo6OzkeHB4dOzk6Oh4cHgAKtzs5Ozo7OR0dHR07OTo6HR0dAA0FAAAAAAAA'
+      antik_set_top_box_green:
+        friendly_name: "Antik set top box green"
+        command_on: 'JgBCADsdHR0dOjs5HR0dHTs5HR07HB0ACtY7HB4cHjk7OR0dHhw7OR4dOh0dAArVOxweHB06OzkeHR0dOjodHTscHQANBQAAAAA='
+        command_off: 'JgBCADsdHR0dOjs5HR0dHTs5HR07HB0ACtY7HB4cHjk7OR0dHhw7OR4dOh0dAArVOxweHB06OzkeHR0dOjodHTscHQANBQAAAAA='
+      antik_set_top_box_yellow:
+        friendly_name: "Antik set top box yellow"
+        command_on: 'JgA8ADo6Ozk6Oh0dHhw6Oh0dOzkeAAq4Ojo7OTs5HR0dHTs5Hhw7OR4ACrg7OTs6OjoeHB0dOzkdHTs5HQANBQAAAAAAAAAAAAA='
+        command_off: 'JgA8ADo6Ozk6Oh0dHhw6Oh0dOzkeAAq4Ojo7OTs5HR0dHTs5Hhw7OR4ACrg7OTs6OjoeHB0dOzkdHTs5HQANBQAAAAAAAAAAAAA='
+      antik_set_top_box_blue:
+        friendly_name: "Antik set top box blue"
+        command_on: 'JgAoADo6Ojo7OR0dHhw6Oh4cHR06AArWOzk6Ojs5HhweHDs5Hh0dHTsADQUAAAAAAAAAAAAAAAAAAA=='
+        command_off: 'JgAoADo6Ojo7OR0dHhw6Oh4cHR06AArWOzk6Ojs5HhweHDs5Hh0dHTsADQUAAAAAAAAAAAAAAAAAAA=='
