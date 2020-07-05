@@ -6,3 +6,18 @@
 #  host: cups
 #  printers:
 #    - ipp/print
+- platform: systemmonitor
+  resources:
+    - type: processor_use
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+    - type: memory_free
+    - type: memory_use
+    - type: memory_use_percent
+    - type: disk_use_percent
+      arg: /
+    - type: ipv4_address
+      arg: eth0
+    - type: ipv4_address
+      arg: wlan0
