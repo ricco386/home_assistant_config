@@ -1,9 +1,15 @@
 light:
   - platform: template
     lights:
-      livingroom_ceiling_light:  # Broadlink IR switch
+      living_room_ceiling_light:
         friendly_name: "Living Room ceiling light"
         turn_on:
-          service: script.living_room_ceiling_light_on
+          service: broadlink.send
+          data_template:
+            host: !secret broadlink_ip
+            packet: 'JgCcACkOKg4OKQ8pDikOKQ8pDikpDg8pDikPAAEGKg4qDQ4pDykOKQ8oDykOKSoODikPKA8AAQYqDikODykOKQ4pDykOKQ8oKg4OKQ8pDgABByoNKg0PKQ4pDygPKQ4pDykqDQ8oDykOAAEHKQ4pDw4pDikPKQ4pDygPKSkODykOKQ8AAQYpDioODikPKA8pDikPKQ4pKg0PKQ4pDwANBQAAAAAAAAAAAAA='
         turn_off:
-          service: script.living_room_ceiling_light_off
+          service: broadlink.send
+          data_template:
+            host: !secret broadlink_ip
+            packet: 'JgCcACkOKg4OKQ8pDikOKQ8pDikpDg8pDikPAAEGKg4qDQ4pDykOKQ8oDykOKSoODikPKA8AAQYqDikODykOKQ4pDykOKQ8oKg4OKQ8pDgABByoNKg0PKQ4pDygPKQ4pDykqDQ8oDykOAAEHKQ4pDw4pDikPKQ4pDygPKSkODykOKQ8AAQYpDioODikPKA8pDikPKQ4pKg0PKQ4pDwANBQAAAAAAAAAAAAA='

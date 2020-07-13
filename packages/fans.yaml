@@ -1,21 +1,60 @@
+input_boolean:
+  living_room_ceiling_fan_power:
+    name: Living room ceiling fan power
+    initial: "off"
+
+input_select:
+  living_room_ceiling_fan_speed:
+    name: Living room ceiling fan speed
+    options:
+      - "off"
+      - "low"
+      - "medium"
+      - "high"
+    initial: "off"
+
 fan:
   - platform: template
     fans:
-      livingroom_fan:
+      living_room_ceiling_fan:
         friendly_name: "Living Room fan"
-        value_template: "{{ states('input_boolean.state') }}"
-        speed_template: "{{ states('input_select.speed') }}"
+        value_template: "{{ states('input_boolean.living_room_ceiling_fan_power') }}"
+        speed_template: "{{ states('input_select.living_room_ceiling_fan_speed') }}"
         turn_on:
-          service: script.living_room_fan_speed
-          data_template:
-            speed: "3"
+          - service: input_boolean.turn_on
+            data:
+              entity_id: input_boolean.living_room_ceiling_fan_power
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.living_room_ceiling_fan_speed
+              option: "low"
+          - service: script.living_room_ceiling_fan_speed
+            data_template:
+              speed: "low"
         turn_off:
-          service: script.living_room_fan_off
+          - service: input_boolean.turn_off
+            data:
+              entity_id: input_boolean.living_room_ceiling_fan_power
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.living_room_ceiling_fan_speed
+              option: "off"
+          - service: script.living_room_ceiling_fan_speed
+            data_template:
+              speed: "off"
         set_speed:
-          service: script.living_room_fan_speed
-          data_template:
-            speed: "{{ speed }}"
+          - service: input_boolean.turn_on
+            data:
+              entity_id: input_boolean.living_room_ceiling_fan_power
+          - service: input_select.select_option
+            data:
+              entity_id: input_select.living_room_ceiling_fan_speed
+              option: "{{ speed }}"
+          - service: script.living_room_ceiling_fan_speed
+            data_template:
+              speed: "{{ speed }}"
         speeds:
-          - '1'
-          - '2'
-          - '3'
+          - "off"
+          - "low"
+          - "medium"
+          - "high"
