@@ -17,6 +17,9 @@ homeassistant:
   # https://home-assistant.io/docs/configuration/packages/
   packages: !include_dir_named packages
 
+frontend:
+  themes: !include_dir_merge_named themes
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -39,3 +42,17 @@ asuswrt:
     - download
     - upload_speed
     - download_speed
+
+#ffmpeg:
+#  ffmpeg_bin: /usr/bin/ffmpeg
+#
+#camera:
+#  - platform: ffmpeg
+#    name: Garage Camera
+#    input: -rtsp_transport udp -i rtsp://admin:x8Gpaxesbg325iJA@192.168.24.250:554/onvif1
+#  - platform: onvif
+#    host: 192.168.24.250
+#    name: Garage CAM
+#    username: admin
+#    password: x8Gpaxesbg325iJA
+#    port: 554
