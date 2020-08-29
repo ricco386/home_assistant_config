@@ -45,3 +45,20 @@ asuswrt:
     - download
     - upload_speed
     - download_speed
+
+volkswagencarnet:
+    username: !secret volkswagen_carnet_username
+    password: !secret volkswagen_carnet_password
+    scandinavian_miles: false
+    scan_interval:
+        minutes: 5
+    name:
+        wvw1234567812356: 'Sportsvan'
+    resources: # Optional
+        - position
+        - distance
+        - service_inspection
+        - oil_inspection
+        - door_locked
+        - trunk_locked
+        - request_in_progress
