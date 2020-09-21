@@ -51,7 +51,7 @@ volkswagencarnet:
     password: !secret volkswagen_carnet_password
     scandinavian_miles: false
     scan_interval:
-        minutes: 5
+        minutes: 15
     name:
         wvw1234567812356: 'Sportsvan'
     resources: # Optional
@@ -59,6 +59,11 @@ volkswagencarnet:
         - distance
         - service_inspection
         - oil_inspection
+        - fuel_level
         - door_locked
         - trunk_locked
+        - last_connected
         - request_in_progress
+        - trip_last_average_speed
+        - trip_last_average_fuel_consumption
+        - trip_last_duration
