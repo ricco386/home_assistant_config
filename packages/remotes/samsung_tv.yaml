@@ -1,9 +1,9 @@
 switch:
   - platform: broadlink
-    host: !secret broadlink_ip
+    #host: !secret broadlink_ip
     mac: !secret broadlink_mac
-    type: rm4_pro
-    timeout: 15
+    #type: rm4_pro
+    #timeout: 15
     switches:
       samsung_tv_power:
         friendly_name: "Samsung TV power"

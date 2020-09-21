@@ -1,9 +1,9 @@
 switch:
   - platform: broadlink
-    host: !secret broadlink_ip
+    #host: !secret broadlink_ip
     mac: !secret broadlink_mac
-    type: rm4_pro
-    timeout: 15
+    #type: rm4_pro
+    #timeout: 15
     switches:
       yamaha_receiver_hdmi1:
         friendly_name: "HDMI 1"
