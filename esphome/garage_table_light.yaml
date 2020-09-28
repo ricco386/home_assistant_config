@@ -51,6 +51,9 @@ binary_sensor:
     on_press:
       - switch.toggle: relay
 
+  - platform: status
+    name: "Garage Table Light Status"
+
 switch:
   - platform: gpio
     name: "Garage Table Light"
@@ -67,9 +70,17 @@ sensor:
   # Uptime sensor.
   - platform: uptime
     name: "Garage Table Light Uptime"
+    filters:
+      - lambda: return x / 3600.0;
+    unit_of_measurement: "hours"
+    accuracy_decimals: 2
 
   # WiFi Signal sensor.
   - platform: wifi_signal
     name: "Garage Table Light WiFi Signal"
     update_interval: 60s
 
+text_sensor:
+  - platform: version
+    name: "GTL ESPHome Version"
+    hide_timestamp: True

@@ -52,6 +52,9 @@ binary_sensor:
     on_press:
       - switch.toggle: relay
 
+  - platform: status
+    name: "Garage Ventilation Status"
+
 switch:
   - platform: gpio
     name: "Garage Ventilation Power"
@@ -68,8 +71,17 @@ sensor:
   # Uptime sensor.
   - platform: uptime
     name: "Garage Ventilation Uptime"
+    filters:
+      - lambda: return x / 3600.0;
+    unit_of_measurement: "hours"
+    accuracy_decimals: 2
 
   # WiFi Signal sensor.
   - platform: wifi_signal
     name: "Garage Ventilation WiFi Signal"
     update_interval: 60s
+
+text_sensor:
+  - platform: version
+    name: "GV ESPHome Version"
+    hide_timestamp: True

@@ -52,6 +52,9 @@ binary_sensor:
     on_press:
       - switch.toggle: relay
 
+  - platform: status
+    name: "Garage Main Switch Status"
+
 switch:
   - platform: gpio
     name: "Garage Main Switch Power"
@@ -80,8 +83,18 @@ sensor:
   # Uptime sensor.
   - platform: uptime
     name: "Garage Main Switch Uptime"
-
+    update_interval: 60s
+    filters:
+      - lambda: return x / 3600.0;
+    unit_of_measurement: "hours"
+    accuracy_decimals: 2
+    
   # WiFi Signal sensor.
   - platform: wifi_signal
     name: "Garage Main Switch WiFi Signal"
     update_interval: 60s
+
+text_sensor:
+  - platform: version
+    name: "GMS ESPHome Version"
+    hide_timestamp: True
