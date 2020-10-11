@@ -1,46 +1,16 @@
-esphome:
-  name: garage_main_switch
+substitutions:
+  devicename: gms
+  upper_devicename: GMS
+  device_verbose_name: "Garage Main Switch"
   platform: ESP8266
   board: esp8285
+  api_password: !secret gms_api_password
+  static_ip: !secret gms_ip
+  fallback_ap_password: !secret gms_fallback_ap_password
 
-wifi:
-  ssid: !secret wifi_vault_ssid
-  password: !secret wifi_vault_password
-  domain: !secret wifi_vault_domain
-
-  # Set IP manually (otherwise HA fails to connect often)
-  manual_ip:
-    static_ip: !secret gms_ip
-    gateway: !secret wifi_vault_gateway
-    subnet: !secret wifi_vault_subnet
-    dns1: !secret wifi_vault_dns
-  # use_address: !secret gms_old_ip
-
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: "GMS Fallback Hotspot"
-    password: !secret gms_fallback_ap_password
-
-captive_portal:
-
-# Enable logging
-logger:
-
-# Enable Home Assistant API
-api:
-  password: !secret gms_api_password
-
-ota:
-  password: !secret gms_ota_password
-
-# Enable Web server.
-# web_server:
-#   port: 80
-
-# Sync time with Home Assistant.
-time:
-  - platform: homeassistant
-    id: homeassistant_time
+packages:
+  wifi: !include common/wifi.yaml
+  device_base: !include common/device_base.yaml
 
 binary_sensor:
   - platform: gpio
@@ -48,18 +18,15 @@ binary_sensor:
       number: GPIO0
       mode: INPUT_PULLUP
       inverted: True
-    name: "Garage Main Switch Button"
+    name: "${upper_devicename} Button"
     on_press:
-      - switch.toggle: relay
-
-  - platform: status
-    name: "Garage Main Switch Status"
+      - switch.toggle: "${devicename}_relay"
 
 switch:
   - platform: gpio
-    name: "Garage Main Switch Power"
+    name: "${upper_devicename} Power"
+    id: "${devicename}_relay"
     pin: GPIO12
-    id: relay
 
 status_led:
   pin:
@@ -74,27 +41,8 @@ uart:
 sensor:
   - platform: cse7766
     current:
-      name: "Garage Main Switch Current"
+      name: "${upper_devicename} Current"
     voltage:
-      name: "Garage Main Switch Voltage"
+      name: "${upper_devicename} Voltage"
     power:
-      name: "Garage Main Switch Power"
-
-  # Uptime sensor.
-  - platform: uptime
-    name: "Garage Main Switch Uptime"
-    update_interval: 60s
-    filters:
-      - lambda: return x / 3600.0;
-    unit_of_measurement: "hours"
-    accuracy_decimals: 2
-    
-  # WiFi Signal sensor.
-  - platform: wifi_signal
-    name: "Garage Main Switch WiFi Signal"
-    update_interval: 60s
-
-text_sensor:
-  - platform: version
-    name: "GMS ESPHome Version"
-    hide_timestamp: True
+      name: "${upper_devicename} Power"

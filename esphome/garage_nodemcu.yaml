@@ -1,0 +1,78 @@
+substitutions:
+  devicename: gnmcu
+  upper_devicename: GNMCU
+  device_verbose_name: "Garage NodeMCU"
+  platform: ESP8266
+  board: nodemcuv2
+  api_password: !secret gmcu_api_password
+  static_ip: !secret gmcu_ip
+  fallback_ap_password: !secret gmcu_fallback_ap_password
+
+packages:
+  wifi: !include common/wifi.yaml
+  device_base: !include common/device_base.yaml
+
+switch:
+  - platform: gpio
+    name: "${upper_devicename} Table LED stripe"
+    id: "${devicename}_relay1_table_led_stripe"
+    icon: "mdi:lightbulb"
+    pin:
+      number: D1
+    on_turn_on:
+      then:
+        - light.turn_on: led
+        - delay: 0.1s
+        - light.turn_off: led
+        - delay: 0.1s
+        - light.turn_on: led
+        - delay: 0.1s
+        - light.turn_off: led
+        - delay: 0.1s
+        - light.turn_on: led
+        - delay: 0.1s
+        - light.turn_off: led
+
+sensor:
+  - platform: dht
+    pin: D2
+    model: DHT22
+    temperature:
+      name: "${upper_devicename} Temperature"
+    humidity:
+      name: "${upper_devicename} Humidity"
+    update_interval: 60s
+
+  # - platform: ultrasonic
+  #   trigger_pin: D5
+  #   echo_pin: D6
+  #   name: "${upper_devicename} Ultrasonic Sensor"
+
+  - platform: adc
+    pin: A0
+    name: "${upper_devicename} MQ-7 (raw)"
+    id: "${devicename}_mq7"
+
+  - platform: template
+    name: "${upper_devicename} MQ-7"
+    lambda: |-
+      return (id(${devicename}_mq7).state*1024/5); // WITHOUT PROPER CALIBRATION YOU WILL NOT GET SERIOUS RESULTS
+    unit_of_measurement: ppm # (ONLY IF CALIBRATED!)
+    icon: 'mdi:fire'
+
+status_led:
+  # https://esphome.io/components/status_led.html
+  pin: D0
+
+output:
+  - platform: esp8266_pwm
+    id: "${devicename}_onboard_led"
+    pin:
+      number: D4
+      inverted: true
+
+light:
+ - platform: monochromatic
+   name: "${upper_devicename} Onboard LED"
+   output: "${devicename}_onboard_led"
+   id: led

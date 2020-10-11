@@ -1,0 +1,36 @@
+esphome:
+  name: ${devicename}
+  platform: ${platform}
+  board: ${board}
+
+captive_portal:
+
+# Enable logging
+logger:
+#  level: ${log_level}
+
+# Sync time with Home Assistant.
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+# Enable Web server.
+# web_server:
+#   port: 80
+
+api:
+  password: ${api_password}
+  reboot_timeout: 1h
+
+ota:
+  password: ${api_password}
+ 
+sensor:
+ # This is file inside common directory
+  - <<: !include sensor.yaml
+binary_sensor:
+  # This is file inside common director
+  - <<: !include binary_sensor.yaml
+text_sensor:
+  # This is file inside common directory
+  - <<: !include text_sensor.yaml

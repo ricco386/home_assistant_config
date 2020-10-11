@@ -1,0 +1,17 @@
+wifi:
+  ssid: !secret wifi_vault_ssid
+  password: !secret wifi_vault_password
+  domain: !secret wifi_vault_domain
+
+ # Set IP manually (otherwise HA fails to connect often)
+  manual_ip:
+    static_ip: ${static_ip}
+    gateway: !secret wifi_vault_gateway
+    subnet: !secret wifi_vault_subnet
+    dns1: !secret wifi_vault_dns
+  # use_address: !secret gv_old_ip
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "${upper_devicename} Fallback Hotspot"
+    password: ${fallback_ap_password}

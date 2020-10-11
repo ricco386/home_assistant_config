@@ -1,0 +1,12 @@
+# Uptime sensor.
+- platform: uptime
+  name: "${upper_devicename} Uptime"
+  filters:
+    - lambda: return x / 3600.0 / 24;
+  unit_of_measurement: "days"
+  accuracy_decimals: 2
+
+# WiFi Signal sensor.
+- platform: wifi_signal
+  name: "${upper_devicename} WiFi Signal"
+  update_interval: 60s
