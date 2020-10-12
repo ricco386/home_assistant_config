@@ -21,12 +21,29 @@ binary_sensor:
     name: "${upper_devicename} Button"
     on_press:
       - switch.toggle: "${devicename}_relay"
+    on_multi_click:
+    - timing:
+        - ON for at most 0.5s
+        - OFF for at most 0.5s
+        - ON for at most 0.5s
+        - OFF for at most 0.5s
+        - ON for at most 0.5s
+        - OFF for at most 0.5s
+        - ON for at most 0.5s
+        - OFF for at least 0.2s
+      then:
+        - switch.turn_on: "${devicename}_restart"
 
 switch:
   - platform: gpio
-    name: "${upper_devicename} Power"
-    id: "${devicename}_relay"
     pin: GPIO12
+    id: "${devicename}_relay"
+    name: "${upper_devicename} Power"
+    icon: mdi:power
+
+  - platform: restart
+    name: "Reboot ${device_verbose_name} Sonoff"
+    id: "${devicename}_restart"
 
 status_led:
   pin:

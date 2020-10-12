@@ -13,25 +13,9 @@ packages:
   device_base: !include common/device_base.yaml
 
 switch:
-  - platform: gpio
-    name: "${upper_devicename} Table LED stripe"
-    id: "${devicename}_relay1_table_led_stripe"
-    icon: "mdi:lightbulb"
-    pin:
-      number: D1
-    on_turn_on:
-      then:
-        - light.turn_on: led
-        - delay: 0.1s
-        - light.turn_off: led
-        - delay: 0.1s
-        - light.turn_on: led
-        - delay: 0.1s
-        - light.turn_off: led
-        - delay: 0.1s
-        - light.turn_on: led
-        - delay: 0.1s
-        - light.turn_off: led
+  - platform: restart
+    name: "Reboot ${device_verbose_name}"
+    id: "${devicename}_restart"
 
 sensor:
   - platform: dht
@@ -65,6 +49,11 @@ status_led:
   pin: D0
 
 output:
+  - platform: gpio
+    id: "${devicename}_relay"
+    pin:
+      number: D1
+
   - platform: esp8266_pwm
     id: "${devicename}_onboard_led"
     pin:
@@ -72,7 +61,52 @@ output:
       inverted: true
 
 light:
- - platform: monochromatic
-   name: "${upper_devicename} Onboard LED"
-   output: "${devicename}_onboard_led"
-   id: led
+  - platform: binary
+    id: "${devicename}_table_led_stripe"
+    name: Table LED stripe
+    output: "${devicename}_relay"
+    on_turn_on:
+      then:
+        - script.execute: on_board_led_blink3
+    on_turn_off:
+      then:
+        - script.execute: on_board_led_blink5
+
+  - platform: monochromatic
+    id: led
+    name: "${upper_devicename} Onboard LED"
+    output: "${devicename}_onboard_led"
+
+script:
+  - id: on_board_led_blink2
+    mode: restart
+    then:
+      - light.turn_on: led
+      - delay: 0.5s
+      - light.turn_off: led
+      - delay: 0.5s
+      - light.turn_on: led
+      - delay: 0.5s
+      - light.turn_off: led
+  
+  - id: on_board_led_blink3
+    mode: restart
+    then:
+      - light.turn_on: led
+      - delay: 0.5s
+      - light.turn_off: led
+      - delay: 0.5s
+      - light.turn_on: led
+      - delay: 0.5s
+      - light.turn_off: led
+      - delay: 0.5s
+      - light.turn_on: led
+      - delay: 0.5s
+      - light.turn_off: led
+      
+  - id: on_board_led_blink5
+    mode: restart
+    then:
+      - script.execute: on_board_led_blink3
+      - delay: 0.5s
+      - script.execute: on_board_led_blink2

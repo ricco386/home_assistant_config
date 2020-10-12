@@ -1,12 +1,12 @@
 substitutions:
-  devicename: gv
-  upper_devicename: GV
-  device_verbose_name: "Garage Ventilation"
+  devicename: gcl
+  upper_devicename: GCL
+  device_verbose_name: "Garage Ceiling Lights"
   platform: ESP8266
   board: esp8285
-  api_password: !secret gv_api_password
-  static_ip: !secret gv_ip
-  fallback_ap_password: !secret gv_fallback_ap_password
+  api_password: !secret gcl_api_password
+  static_ip: !secret gcl_ip
+  fallback_ap_password: !secret gcl_fallback_ap_password
 
 packages:
   wifi: !include common/wifi.yaml
@@ -25,7 +25,7 @@ binary_sensor:
       inverted: True
     name: "${upper_devicename} Button"
     on_press:
-      - fan.toggle: "${devicename}_ventilation"
+      - light.toggle: "${devicename}_light"
     on_multi_click:
     - timing:
         - ON for at most 0.5s
@@ -44,10 +44,10 @@ output:
     id: "${devicename}_relay"
     pin: GPIO12
 
-fan:
+light:
   - platform: binary
     name: ${device_verbose_name}
-    id: "${devicename}_ventilation"
+    id: "${devicename}_light"
     output: "${devicename}_relay"
 
 status_led:
