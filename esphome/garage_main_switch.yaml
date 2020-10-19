@@ -3,7 +3,7 @@ substitutions:
   upper_devicename: GMS
   device_verbose_name: "Garage Main Switch"
   platform: ESP8266
-  board: esp8285
+  board: esp01_1m
   api_password: !secret gms_api_password
   static_ip: !secret gms_ip
   fallback_ap_password: !secret gms_fallback_ap_password
@@ -12,6 +12,9 @@ packages:
   wifi: !include common/wifi.yaml
   device_base: !include common/device_base.yaml
 
+logger:
+  baud_rate: 0
+
 binary_sensor:
   - platform: gpio
     pin:
@@ -19,47 +22,53 @@ binary_sensor:
       mode: INPUT_PULLUP
       inverted: True
     name: "${upper_devicename} Button"
-    on_press:
-      - switch.toggle: "${devicename}_relay"
-    on_multi_click:
-    - timing:
-        - ON for at most 0.5s
-        - OFF for at most 0.5s
-        - ON for at most 0.5s
-        - OFF for at most 0.5s
-        - ON for at most 0.5s
-        - OFF for at most 0.5s
-        - ON for at most 0.5s
-        - OFF for at least 0.2s
+    on_click:
+    - min_length: 50ms
+      max_length: 2s
       then:
         - switch.turn_on: "${devicename}_restart"
+    - min_length: 10s
+      max_length: 20s
+      then:
+        - switch.toggle: "${devicename}_main_switch"
 
 switch:
-  - platform: gpio
-    pin: GPIO12
-    id: "${devicename}_relay"
-    name: "${upper_devicename} Power"
-    icon: mdi:power
-
   - platform: restart
     name: "Reboot ${device_verbose_name} Sonoff"
     id: "${devicename}_restart"
 
+  - platform: gpio
+    pin: GPIO12
+    id: "${devicename}_main_switch"
+    name: Garage main switch
+
 status_led:
   pin:
-    number: GPIO13
+    number: GPIO15
     inverted: yes
 
 uart:
   rx_pin: RX
   baud_rate: 4800
 
-# Sensors with general information.
 sensor:
-  - platform: cse7766
+  - platform: total_daily_energy
+    name: "Garage Daily Energy"
+    power_id: "${devicename}_power"
+    filters:
+      # Multiplication factor from W to kW is 0.001
+      - multiply: 0.001
+    unit_of_measurement: kWh
+    
+  - platform: hlw8012
+    update_interval: 2s
+    sel_pin: 5
+    cf_pin: 14
+    cf1_pin: 13
     current:
       name: "${upper_devicename} Current"
     voltage:
       name: "${upper_devicename} Voltage"
     power:
       name: "${upper_devicename} Power"
+      id: "${devicename}_power"
