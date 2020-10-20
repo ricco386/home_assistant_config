@@ -12,6 +12,11 @@ packages:
   wifi: !include common/wifi.yaml
   device_base: !include common/device_base.yaml
 
+wifi:
+  reboot_timeout: 0s
+  fast_connect: yes
+
+
 logger:
   baud_rate: 0
 
@@ -23,12 +28,12 @@ binary_sensor:
       inverted: True
     name: "${upper_devicename} Button"
     on_click:
-    - min_length: 50ms
-      max_length: 2s
+    - min_length: 1s
+      max_length: 3s
       then:
         - switch.turn_on: "${devicename}_restart"
-    - min_length: 10s
-      max_length: 20s
+    - min_length: 7s
+      max_length: 15s
       then:
         - switch.toggle: "${devicename}_main_switch"
 
@@ -41,6 +46,7 @@ switch:
     pin: GPIO12
     id: "${devicename}_main_switch"
     name: Garage main switch
+    restore_mode: ALWAYS_ON
 
 status_led:
   pin:
