@@ -1,0 +1,6 @@
+garage_lights:
+  name: Garage Light
+  icon: mdi:lightbulb-on
+  entities:
+    - light.garage_ceiling_lights
+    - light.table_led_stripe
