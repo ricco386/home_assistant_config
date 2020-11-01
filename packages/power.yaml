@@ -1,0 +1,45 @@
+sensor:
+  - platform: template
+    sensors:
+      garage_monthly_energy_cumulative:
+        friendly_name: Garage Energy Monthly
+        icon_template: mdi:flash
+        unit_of_measurement: kWh
+        value_template: "{{ states('sensor.garage_energy_monthly')|float }}"
+      garage_yearly_energy_cumulative:
+        friendly_name: Garage Energy Yearly
+        icon_template: mdi:flash
+        unit_of_measurement: kWh
+        value_template: "{{ states('sensor.garage_energy_yearly')|float }}"
+
+  # Calculate REAL costs based on measurements in utility_meter
+  - platform: template
+    sensors:
+      garage_cost_daily:
+        friendly_name: Garage Cost Daily
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+        value_template: "{{ (states('sensor.garage_daily_energy') | float * 0.0682) | round(4) }}"
+      garage_cost_monthly:
+        friendly_name: Garage Cost Monthly
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+        value_template: "{{ (states('sensor.garage_energy_monthly') | float * 0.0682) | round(2) }}"
+      garage_cost_yearly:
+        friendly_name: Garage Cost Yearly
+        unit_of_measurement: '€'
+        icon_template: mdi:currency-eur
+        value_template: "{{ (states('sensor.garage_energy_yearly') | float * 0.0682) | round(2) }}"   
+
+# Measure monthly and yearly energy spent cycle
+#
+# https://www.home-assistant.io/integrations/utility_meter/
+#
+# Sensor provided by ESP Home - Garage Main Switch measurements...
+utility_meter:
+  garage_energy_monthly:
+    source: sensor.garage_daily_energy
+    cycle: monthly
+  garage_energy_yearly:
+    source: sensor.garage_daily_energy
+    cycle: yearly

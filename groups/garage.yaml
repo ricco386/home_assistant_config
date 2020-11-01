@@ -4,3 +4,13 @@ garage_lights:
   entities:
     - light.garage_ceiling_lights
     - light.table_led_stripe
+
+garage_appliences:
+  name: All Garage Appliences
+  icon: mdi:power
+  entities:
+    - fan.garage_ventilation
+    - light.garage_ceiling_lights
+    - light.table_led_stripe
+
+
