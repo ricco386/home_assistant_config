@@ -17,6 +17,15 @@ switch:
     name: "Reboot ${device_verbose_name}"
     id: "${devicename}_restart"
 
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: D6
+    id: button_id
+    on_press:
+      then:
+        - light.toggle: "${devicename}_table_led_stripe"
+
 sensor:
   - platform: dht
     pin: D2
