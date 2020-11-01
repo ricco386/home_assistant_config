@@ -26,6 +26,11 @@ frontend:
 # Text to speech
 tts:
   - platform: google_translate
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+    base_url: !secret external_url
+    service_name: google_say
 
 group: !include_dir_merge_named groups/
 alarm_control_panel: !include alarm.yaml
