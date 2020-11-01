@@ -34,6 +34,7 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 sensor: !include sensor.yaml
 notify: !include notify.yaml
+recorder: !include recorder.yaml
 
 asuswrt:
   host: 192.168.24.1
