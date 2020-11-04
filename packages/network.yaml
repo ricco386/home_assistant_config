@@ -1,0 +1,81 @@
+asuswrt:
+  host: !secret wifi_home_gateway
+  username: !secret asuswrt_username
+  protocol: ssh
+  ssh_key: !secret asuswrt_sshkey
+  sensors:
+    - devices
+    - upload
+    - download
+    - upload_speed
+    - download_speed
+
+binary_sensor:
+ - platform: ping
+   host: "litebeam-5ac.qwer.sk"
+   count: 2
+   scan_interval: 30
+ - platform: ping
+   host: "nanostation-5ac.qwer.sk"
+   count: 2
+   scan_interval: 30
+ - platform: ping
+   host: !secret gms_ip
+   name: "Ping Garage Main Switch"
+   count: 2
+   scan_interval: 30
+
+sensor:
+ - platform: cert_expiry
+   host: next.qwer.sk
+ - platform: cert_expiry
+   host: brain.qwer.sk
+
+#- platform: cups
+#  host: cups
+#  printers:
+#    - ipp/print
+
+automation:
+  - id: garage_network_unreachable
+    alias: "Garage Network Unreachable"
+    trigger:
+      platform: state
+      entity_id: 
+        - binary_sensor.ping_nanostation_5ac_qwer_sk
+        - binary_sensor.ping_garage_main_switch
+      to: 'off'
+      for:
+        minutes: 3
+    action:
+      - service: notify.NOTIFIER_EMAIL
+        data:
+          title: 'Garage Network Unreachable'
+          message: |
+            Garage Network Unreachable: {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+            
+            Litebeam 5AC: {{ states.binary_sensor.ping_litebeam_5ac_qwer_sk.state }}
+            Nanostation 5AC: {{ states.binary_sensor.ping_nanostation_5ac_qwer_sk.state }}
+            Garage Main Switch: {{ states.binary_sensor.ping_garage_main_switch.state }}
+
+  - id: ssl_certificate_expiring
+    alias: "SSL Certificate is about to expire!"
+    trigger:
+      platform: time
+      at: '21:05:05'
+    condition:
+      condition: or
+      conditions:
+        - condition: numeric_state
+          entity_id: sensor.cert_expiry_next_qwer_sk
+          below: 15
+        - condition: numeric_state
+          entity_id: sensor.cert_expiry_brain_qwer_sk
+          below: 15
+    action:
+      - service: notify.NOTIFIER_EMAIL
+        data:
+          title: 'SSL Certificate is about to expire!'
+          message: |
+            {{ sensor.cert_expiry_timestamp_next_qwer_sk.friendly_name }}: {{ sensor.cert_expiry_timestamp_next_qwer_sk }} in {{ sensor.cert_expiry_next_qwer_sk }} days.
+            {{ sensor.cert_expiry_timestamp_brain_qwer_sk.friendly_name }}: {{ sensor.cert_expiry_timestamp_brain_qwer_sk }} in {{ sensor.cert_expiry_brain_qwer_sk }} days.

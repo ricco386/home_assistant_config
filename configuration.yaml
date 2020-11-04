@@ -41,18 +41,6 @@ sensor: !include sensor.yaml
 notify: !include notify.yaml
 recorder: !include recorder.yaml
 
-asuswrt:
-  host: 192.168.24.1
-  username: !secret asuswrt_username
-  protocol: ssh
-  ssh_key: !secret asuswrt_sshkey
-  sensors:
-    - devices
-    - upload
-    - download
-    - upload_speed
-    - download_speed
-
 volkswagencarnet:
     username: !secret volkswagen_carnet_username
     password: !secret volkswagen_carnet_password
