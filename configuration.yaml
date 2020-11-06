@@ -12,6 +12,13 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Bratislava
   internal_url: !secret internal_url
+  external_url: !secret external_url
+  allowlist_external_dirs:
+    - /config/www/cameras
+    - /tmp
+  media_dirs:
+    media: /media
+    recordings: /config/www/cameras
   # https://www.home-assistant.io/docs/configuration/customizing-devices/
   customize: !include customize.yaml
   # https://home-assistant.io/docs/configuration/packages/

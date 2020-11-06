@@ -1,13 +1,124 @@
-#- alias: Send an email when the garage doorbell opens or if there is movement
-#  trigger:
-#  - platform: state
-#    entity_id: binary_sensor.garage_door, binary_sensor.garage_pir
-#    to: 'on'
-#  action:
-#    - service: notify.NOTIFIER_EMAIL
-#      data:
-#        title: 'Intruder alert'
-#        message: 'Intruder alert at garage!'
+- id: '1604351314437'
+  alias: Tag Garage Bulletin Board is scanned
+  description: Arm Alarm
+  trigger:
+  - platform: tag
+    tag_id: 7cac0989-4f74-4736-8d06-81bb01cf6098
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.garage_alarm
+    state: disarmed
+  action:
+  - service: alarm_control_panel.alarm_arm_away
+    data:
+      code: '1234'
+    entity_id: alarm_control_panel.garage_alarm
+  mode: single
+- id: '1604351731893'
+  alias: Tag Garage Bulletin Board is scanned
+  description: Disarm
+  trigger:
+  - platform: tag
+    tag_id: 7cac0989-4f74-4736-8d06-81bb01cf6098
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.garage_alarm
+    state: armed_away
+  action:
+  - service: alarm_control_panel.alarm_disarm
+    data:
+      code: '1234'
+    entity_id: alarm_control_panel.garage_alarm
+  mode: single
 
-# Garage Alarm
-!include automations/alarm.yaml
+################################
+###       Garage Alarm       ###
+################################
+
+- alias: 'Garage Alarm trigger while Armed'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.garage_pir
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.garage_alarm
+      state: armed_away
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.garage_alarm
+
+- alias: 'Garage Alarm Armed away'
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.garage_alarm
+    to: 'armed_away'
+  action:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: group.garage_appliences
+
+- alias: 'Garage Alarm Triggered'
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.garage_alarm
+    to: 'triggered'
+  action:
+    - service: tts.google_translate_say
+      data:
+        entity_id: "all"
+        message: 'You have triggered Alarm! Everything will be recorded...'
+    - delay: 00:00:01
+    - service: camera.snapshot
+      data:
+        entity_id: camera.garage_cam_1_mainstream
+        filename: /config/www/cameras/garage_cam_1_alarm_{{ now().strftime("%Y-%m-%d") }}_pic1.jpg
+    - delay: 00:00:01
+    - service: camera.snapshot
+      data:
+        entity_id: camera.garage_cam_1_mainstream
+        filename: /config/www/cameras/garage_cam_1_alarm_{{ now().strftime("%Y-%m-%d") }}_pic2.jpg
+    - delay: 00:00:01
+    - service: camera.snapshot
+      data:
+        entity_id: camera.garage_cam_1_mainstream
+        filename: /config/www/cameras/garage_cam_1_alarm_{{ now().strftime("%Y-%m-%d") }}_pic3.jpg
+
+    - service: notify.NOTIFIER_EMAIL
+      data:
+        title: 'Garage Alarm Triggered'
+        message: |
+          Garage Alarm Triggered: {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
+
+          Door: {{ states.binary_sensor.garage_door.state }}
+          PIR: {{ states.binary_sensor.garage_pir.state }}
+        data:
+          images:
+            - /config/www/cameras/garage_cam_1_alarm_{{ now().strftime("%Y-%m-%d") }}_pic1.jpg
+            - /config/www/cameras/garage_cam_1_alarm_{{ now().strftime("%Y-%m-%d") }}_pic2.jpg
+            - /config/www/cameras/garage_cam_1_alarm_{{ now().strftime("%Y-%m-%d") }}_pic3.jpg
+    - service: script.flash_light
+      data:
+        light: gtl_light
+        count: 3
+
+- alias: 'Garage Alarm Disarmed'
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.garage_alarm
+    to: 'disarmed'
+  action:
+    - service: camera.snapshot
+      data:
+        entity_id: camera.garage_cam_1_mainstream
+        filename: /config/www/cameras/garage_cam_1_disarmed.jpg
+    - service: notify.NOTIFIER_EMAIL
+      data:
+        title: 'Garage Alarm Disarmed'
+        message: 'Garage Alarm Disarmed {{ now().strftime("%Y-%m-%d %H:%M:%S") }}'
+        data:
+          images:
+            - /config/www/cameras/garage_cam_1_disarmed.jpg
